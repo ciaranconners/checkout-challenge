@@ -1,0 +1,16 @@
+body {
+  font-family: monospace;
+}
+
+#comment-input {
+  margin: 2%;
+  padding: 1%;
+  border: 1px solid black;
+  display: inline-block;
+}
+#comment-display {
+  margin: 2%;
+}
+#comment {
+  margin: 1%;
+}
