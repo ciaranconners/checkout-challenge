@@ -5,7 +5,8 @@ body {
 #comment-input {
   margin: 2%;
   padding: 1%;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 2px;
   display: inline-block;
 }
 #comment-display {

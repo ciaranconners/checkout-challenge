@@ -17,6 +17,11 @@ class InputForm extends React.Component {
   }
 
   onClick() {
+    const rating = parseInt(this.state.input.rating, 10);
+    if (!rating || rating > 5 || rating < 1) {
+      this.state.input.rating = '';
+      return;
+    }
     this.props.saveComment(this.state.input);
     const input = {name: '', email: '', rating: '', text: ''};
     this.setState({input});

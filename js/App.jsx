@@ -1,5 +1,6 @@
 import React from 'react';
 import InputForm from './InputForm';
+import CommentDisplay from './CommentDisplay';
 
 class App extends React.Component {
   constructor() {
@@ -20,10 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <InputForm saveComment={this.saveComment}/>
-        <div id='comment-display'>
-          Recent Comments:<br/>
-          {this.state.comments.map((comment) => <div id='comment' key={comment.text}>{comment.text}<br/><i>{comment.name}</i></div>)}
-        </div>
+        <CommentDisplay comments={this.state.comments}/>
       </div>
     );
   }
