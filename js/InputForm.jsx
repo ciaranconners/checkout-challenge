@@ -19,7 +19,8 @@ class InputForm extends React.Component {
   onClick() {
     const rating = parseInt(this.state.input.rating, 10);
     if (!rating || rating > 5 || rating < 1) {
-      this.state.input.rating = '';
+      alert('you must enter a rating between 1 & 5, inclusive');
+      document.getElementById('rating').focus();
       return;
     }
     this.props.saveComment(this.state.input);
@@ -43,7 +44,7 @@ class InputForm extends React.Component {
           Email: <br/>
           <input name="email" type="text" value={this.state.input.email} onChange={this.handleChange}/><br/>
           Rating: <br/>
-          <input name="rating" type="text" value={this.state.input.rating} onChange={this.handleChange}/><br/>
+          <input name="rating" id="rating" type="text" value={this.state.input.rating} onChange={this.handleChange}/><br/>
           Comment: <br/>
           <input name="text" type="text" value={this.state.input.text} onChange={this.handleChange}/><br/>
           <input type="button" value="Submit" onClick={this.onClick}/>

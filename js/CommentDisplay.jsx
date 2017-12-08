@@ -11,8 +11,8 @@ const CommentDisplay = (props) => (
 CommentDisplay.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    email: PropTypes.string,
-    rating: PropTypes.string,
+    email: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired
   })).isRequired,
 };
