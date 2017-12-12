@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorModal from './ErrorModal';
 
 class InputForm extends React.Component {
   constructor(props) {
@@ -10,17 +11,20 @@ class InputForm extends React.Component {
         email: '',
         rating: '',
         text: ''
-      }
+      },
+      renderErrorMessage: false,
+      errorMessage: 'you must enter a rating between 1 & 5, inclusive',
     };
-    this.onClick = this.onClick.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.clickThroughError = this.clickThroughError.bind(this);
   }
 
-  onClick() {
+  onSubmit(e) {
+    e.preventDefault();
     const rating = parseInt(this.state.input.rating, 10);
     if (!rating || rating > 5 || rating < 1) {
-      alert('you must enter a rating between 1 & 5, inclusive');
-      document.getElementById('rating').focus();
+      this.setState({renderErrorMessage: true});
       return;
     }
     this.props.saveComment(this.state.input);
@@ -36,22 +40,31 @@ class InputForm extends React.Component {
     this.setState({input});
   }
 
+  clickThroughError() {
+    this.setState({renderErrorMessage: !this.state.renderErrorMessage})
+    document.getElementById('rating').focus();
+  }
+
   render() {
     return (
-        <form id='comment-input'>
+      <div id="form-container">
+        <form id="form" onSubmit={this.onSubmit}>
           Name: <br/>
           <input name="name" type="text" value={this.state.input.name} onChange={this.handleChange}/><br/>
           Email: <br/>
-          <input name="email" type="text" value={this.state.input.email} onChange={this.handleChange}/><br/>
+          <input name="email" type="email" value={this.state.input.email} onChange={this.handleChange}/><br/>
           Rating: <br/>
           <input name="rating" id="rating" type="text" value={this.state.input.rating} onChange={this.handleChange}/><br/>
           Comment: <br/>
-          <input name="text" type="text" value={this.state.input.text} onChange={this.handleChange}/><br/>
-          <input type="button" value="Submit" onClick={this.onClick}/>
+          <textarea name="text" type="text" value={this.state.input.text} onChange={this.handleChange}/><br/>
+          <input type="submit" value="Submit"/>
         </form>
+          {
+            this.state.renderErrorMessage ? <ErrorModal message={this.state.errorMessage} clickThroughError={this.clickThroughError}/> : null
+          }
+      </div>
     );
   }
-
 }
 
 InputForm.propTypes = {

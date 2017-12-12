@@ -1,17 +1,33 @@
 body {
   font-family: monospace;
 }
-
-#comment-input {
-  margin: 2%;
+#form-container {
+  position: relative;
+  margin: 5%;
+}
+#form {
   padding: 1%;
   border: 2px solid black;
   border-radius: 2px;
   display: inline-block;
 }
 #comment-display {
-  margin: 2%;
+  margin: 5%;
 }
 #comment {
   margin: 1%;
+}
+.error-modal {
+  color: yellow;
+  background-color: red;
+  border: 2px solid black;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 2%;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+}
+#ok-button {
+  margin: 0% 50% 0% 50%;
 }
